@@ -4,24 +4,41 @@ import "../assets/App.css";
 import Container from "./Container";
 import { useState } from "react";
 function App(event) {
-  const data=[{id:"1",name:"avdsf"},{id:"2",name:"safsdf"},{id:"3",name:"sdfdsg"},{id:"4",name:"hueueueiu"}];
-  let newState=event.target.value;
-  let useoneState=useState("hi i love you",newState);
-  let haveNow=useoneState[0];
-  
+  const data = [
+    "salad","pokemon","hi","by"
+  ];
+  let [food,setfood]=useState([data])
+
+ const onKeyDown =(event)=>{
+  if(event.key==="Enter"){
+    let newFood=event.target.value;
+    let newitems=[...food+newFood]
+    setfood(newitems);
+    console.log("food added "+ newitems);
+
+  }
+ }
+
   return (
     <center className="todo-container">
-      <FunctionApp/>
-      {data.map((d)=>
-      
-      <>
-      <h1>{d.id}</h1>
-          <Container><AddToDo key={d.key} id={d.id} d={d} handelcare={(event)=>console.log( `${d.name}`)}/></Container>
-          </> )}
-      
+      <FunctionApp />
+      {data.map((d, id) => {
+        return (
+          <div key={id}>
+            <h1>{d.id}</h1>
+            <Container>
+              <AddToDo
+                key={d.key}
+                id={d.id}
+               
+                const handelcare={onKeyDown}
+              />
+            </Container>
+          </div>
+        );
+      })}
     </center>
   );
 }
-
 
 export default App;
